@@ -27,9 +27,35 @@ class ApiService {
     );
   }
 
-  Future<dynamic> post({Map<String, dynamic>? data}) async {
+  Future<dynamic> getHotels({required Map<String, dynamic> data}) async {
     try {
-      final response = await _dio.post("", data: data);
+      // adding action to body so that api can target to hotels list
+      Map<String, dynamic> body = {...Constants.getHotelsList, ...data};
+      final response = await _dio.post("", data: body);
+      return response.data;
+    } on DioException catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<dynamic> getSearchSuggestions({
+    required Map<String, dynamic> data,
+  }) async {
+    try {
+      // adding action to body so that api can target to search suggestion
+      Map<String, dynamic> body = {...Constants.serchAutoComplete, ...data};
+      final response = await _dio.post("", data: body);
+      return response.data;
+    } on DioException catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<dynamic> getSearchResult({required Map<String, dynamic> data}) async {
+    try {
+      // adding action to body so that api can target to search result
+      Map<String, dynamic> body = {...Constants.getSearchResult, ...data};
+      final response = await _dio.post("", data: body);
       return response.data;
     } on DioException catch (e) {
       throw _handleError(e);
