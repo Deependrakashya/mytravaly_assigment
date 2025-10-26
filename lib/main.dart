@@ -5,6 +5,7 @@ import 'package:mytravaly/firebase_options.dart';
 import 'package:mytravaly/view/screens/auth_screen.dart';
 import 'package:mytravaly/view/screens/home_screen.dart';
 import 'package:mytravaly/view_model/provider/auth_screen_provider.dart';
+import 'package:mytravaly/view_model/provider/home_screen_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,6 +19,9 @@ void main() async {
       providers: [
         ChangeNotifierProvider<AuthScreenProvider>(
           create: (_) => AuthScreenProvider(),
+        ),
+        ChangeNotifierProvider<HomeScreenProvider>(
+          create: (_) => HomeScreenProvider(),
         ),
       ],
       child: MaterialApp(

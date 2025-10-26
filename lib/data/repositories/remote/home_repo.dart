@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:mytravaly/core/services/api_service.dart';
 import 'package:mytravaly/data/models/hotel_model.dart';
 
@@ -13,11 +15,12 @@ class HomeRepo {
           "searchType": "byCity", //byCity, byState, byCountry, byRandom,
           "searchTypeInfo": {
             "country": "India",
-            "state": "Jharkhand",
-            "city": "Jamshedpur",
+            "state": "Delhi",
+            "city": "Delhi",
           },
         },
         "currency": "INR",
+        "page": 2,
       },
     };
     final res = await _api.getHotels(data: body);

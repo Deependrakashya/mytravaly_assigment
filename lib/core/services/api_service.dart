@@ -12,6 +12,7 @@ class ApiService {
       headers: {
         "authtoken": "71523fdd8d26f585315b4233e39d9263",
         "visitortoken": "7a1f-1c7c-d871-aaf9-5ada-a1a0-abac-ccae",
+        'content-type': "application/json",
       },
     );
 
