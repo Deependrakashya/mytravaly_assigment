@@ -1,22 +1,30 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:mytravaly/firebase_options.dart';
 import 'package:mytravaly/view/screens/auth_screen.dart';
+import 'package:mytravaly/view/screens/home_screen.dart';
+import 'package:mytravaly/view_model/provider/auth_screen_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Mytravaly Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AuthScreenProvider>(
+          create: (_) => AuthScreenProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Mytravaly Demo',
+        debugShowCheckedModeBanner: false,
+        home: prefs.getBool("isLogin") == null ? AuthScreen() : HomeScreen(),
       ),
-      home: AuthScreen(),
-    );
-  }
+    ),
+  );
 }
