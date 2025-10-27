@@ -45,7 +45,9 @@ class AuthScreen extends StatelessWidget {
                         minimumSize: WidgetStatePropertyAll(
                           Size(double.infinity, 50),
                         ),
-                        backgroundColor: WidgetStatePropertyAll(Colors.black),
+                        backgroundColor: WidgetStatePropertyAll(
+                          Colors.redAccent,
+                        ),
                         foregroundColor: WidgetStatePropertyAll(Colors.white),
                         shadowColor: WidgetStatePropertyAll(Colors.black),
                       ),

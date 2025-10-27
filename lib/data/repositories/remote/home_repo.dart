@@ -5,7 +5,7 @@ import 'package:mytravaly/data/models/hotel_model.dart';
 
 class HomeRepo {
   ApiService _api = ApiService();
-  Future<HotelModel> getAllHotels() async {
+  Future<HotelModel> getAllHotels({int page = 1}) async {
     final Map<String, dynamic> body = {
       "action": "popularStay",
       "popularStay": {
@@ -20,7 +20,7 @@ class HomeRepo {
           },
         },
         "currency": "INR",
-        "page": 2,
+        "page": page,
       },
     };
     final res = await _api.getHotels(data: body);
