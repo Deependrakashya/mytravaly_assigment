@@ -10,11 +10,21 @@ class HomeScreenProvider extends ChangeNotifier {
   int page = 1;
   bool isLoadingMore = false;
   HomeRepo _homeRepo = HomeRepo();
+  bool isLoading = false;
   Future<void> getHotels() async {
-    HotelModel res = await _homeRepo.getAllHotels(page: page);
-    hotels = (res.data).toList();
-    page++;
-    notifyListeners();
+    try {
+      isLoading = true;
+      notifyListeners();
+      HotelModel res = await _homeRepo.getAllHotels(page: page);
+      hotels = (res.data).toList();
+      page++;
+      notifyListeners();
+    } catch (e) {
+      log("Error $e");
+    } finally {
+      isLoading = false;
+      notifyListeners();
+    }
   }
 
   Future<void> loadMoreHotels() async {

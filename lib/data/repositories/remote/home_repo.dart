@@ -15,8 +15,8 @@ class HomeRepo {
           "searchType": "byCity", //byCity, byState, byCountry, byRandom,
           "searchTypeInfo": {
             "country": "India",
-            "state": "Delhi",
-            "city": "Delhi",
+            "state": "Uttrakhand",
+            "city": "almora",
           },
         },
         "currency": "INR",

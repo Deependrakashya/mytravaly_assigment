@@ -16,6 +16,10 @@ class SearchField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: TypeAheadField<ByPropertyNameListOfResult>(
+        emptyBuilder: (context) => Container(
+          padding: EdgeInsets.all(20),
+          child: Text("atleast type 3 char to get suggestions"),
+        ),
         suggestionsCallback: (pattern) async {
           if (pattern.length < 3) return [];
           return await provider.fetchSuggestions(pattern);
@@ -42,6 +46,10 @@ class SearchField extends StatelessWidget {
                       ),
                     )
                   : null,
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide: const BorderSide(width: .8, color: Colors.black),
+              ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
                 borderSide: const BorderSide(width: .8, color: Colors.black),

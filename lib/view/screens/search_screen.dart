@@ -80,13 +80,17 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: Center(child: CircularProgressIndicator()),
                       );
                     } else {
-                      return Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: ElevatedButton(
-                          onPressed: () => provider.loadMoreHotels(),
-                          child: const Text("Load More"),
-                        ),
-                      );
+                      return provider.isLoading
+                          ? Container(
+                              child: Center(child: CircularProgressIndicator()),
+                            )
+                          : Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: ElevatedButton(
+                                onPressed: () => provider.loadMoreHotels(),
+                                child: const Text("Load More"),
+                              ),
+                            );
                     }
                   }
                 },

@@ -50,7 +50,7 @@ class HotelCard extends StatelessWidget {
                 ),
               ),
 
-              // 🏨 Hotel Info
+              //  Hotel Info
               Expanded(
                 child: Container(
                   margin: const EdgeInsets.symmetric(
@@ -61,7 +61,7 @@ class HotelCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      // ⭐ Rating Row
+                      //  Rating Row
                       Row(
                         children: [
                           const Icon(Icons.star, color: Colors.amber, size: 20),
@@ -84,7 +84,7 @@ class HotelCard extends StatelessWidget {
                         ],
                       ),
 
-                      // 🏨 Hotel Name
+                      //  Hotel Name
                       Text(
                         name,
                         maxLines: 1,
@@ -96,7 +96,7 @@ class HotelCard extends StatelessWidget {
                         ),
                       ),
 
-                      // 📍 Address
+                      //  Address
                       Text(
                         address,
                         maxLines: 1,
@@ -108,7 +108,7 @@ class HotelCard extends StatelessWidget {
                         ),
                       ),
 
-                      // 💰 Prices
+                      //  Prices
                       Row(
                         children: [
                           Text(
@@ -125,10 +125,10 @@ class HotelCard extends StatelessWidget {
                               style: const TextStyle(
                                 decoration: TextDecoration.lineThrough,
                                 decorationColor:
-                                    Colors.grey, // <-- color of the cross line
+                                    Colors.white, // <-- color of the cross line
                                 decorationThickness:
                                     2, // optional: make line thicker
-                                color: Colors.grey, // text color
+                                color: Colors.white, // text color
                                 fontSize: 12,
                               ),
                             ),

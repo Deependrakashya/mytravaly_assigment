@@ -45,50 +45,66 @@ class _HomeScreenState extends State<HomeScreen> {
     final sprovider = context.watch<SearchProvider>();
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            SearchField(),
-            Expanded(
-              child: ListView.builder(
-                controller: _scrollController,
-                itemCount: provider.hotels.length + 1, // +1 for load more UI
-                itemBuilder: (context, index) {
-                  if (index < provider.hotels.length) {
-                    final hotel = provider.hotels[index];
-                    return HotelCard(
-                      imageUrl: hotel.propertyImage,
-                      name: hotel.propertyName,
-                      address:
-                          "${hotel.propertyAddress?.city}, ${hotel.propertyAddress?.state}, ${hotel.propertyAddress?.country}",
-                      rating: hotel.propertyStar ?? 0,
-                      totalReviews:
-                          hotel.googleReview?.data?.totalUserRating ?? 0,
-                      currencySymbol: hotel.markedPrice?.currencySymbol ?? "",
-                      price: hotel.staticPrice?.amount ?? 0,
-                      originalPrice: hotel.markedPrice?.amount,
-                    );
-                  } else {
-                    // Load more section
-                    if (provider.isLoadingMore) {
-                      return const Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Center(child: CircularProgressIndicator()),
-                      );
-                    } else {
-                      return Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: ElevatedButton(
-                          onPressed: () => provider.loadMoreHotels(),
-                          child: const Text("Load More"),
-                        ),
-                      );
-                    }
-                  }
-                },
+        child: provider.isLoading
+            ? Container(
+                height: MediaQuery.of(context).size.height * 1,
+                color: const Color.fromARGB(66, 0, 0, 0),
+                width: double.infinity,
+                child: Center(
+                  child: SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: CircularProgressIndicator(color: Colors.amber),
+                  ),
+                ),
+              )
+            : Column(
+                children: [
+                  SizedBox(height: 10),
+                  SearchField(),
+                  Expanded(
+                    child: ListView.builder(
+                      controller: _scrollController,
+                      itemCount:
+                          provider.hotels.length + 1, // +1 for load more UI
+                      itemBuilder: (context, index) {
+                        if (index < provider.hotels.length) {
+                          final hotel = provider.hotels[index];
+                          return HotelCard(
+                            imageUrl: hotel.propertyImage,
+                            name: hotel.propertyName,
+                            address:
+                                "${hotel.propertyAddress?.city}, ${hotel.propertyAddress?.state}, ${hotel.propertyAddress?.country}",
+                            rating: hotel.propertyStar ?? 0,
+                            totalReviews:
+                                hotel.googleReview?.data?.totalUserRating ?? 0,
+                            currencySymbol:
+                                hotel.markedPrice?.currencySymbol ?? "",
+                            price: hotel.staticPrice?.amount ?? 0,
+                            originalPrice: hotel.markedPrice?.amount,
+                          );
+                        } else {
+                          // Load more section
+                          if (provider.isLoadingMore) {
+                            return const Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Center(child: CircularProgressIndicator()),
+                            );
+                          } else {
+                            return Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: ElevatedButton(
+                                onPressed: () => provider.loadMoreHotels(),
+                                child: const Text("Load More"),
+                              ),
+                            );
+                          }
+                        }
+                      },
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
       ),
     );
   }
