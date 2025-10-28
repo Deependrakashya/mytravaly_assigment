@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mytravaly/view/widgets/hotel_card.dart';
+import 'package:mytravaly/view/widgets/search_field.dart';
 import 'package:mytravaly/view_model/provider/home_screen_provider.dart';
+import 'package:mytravaly/view_model/provider/search_provider.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -40,11 +42,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<HomeScreenProvider>();
-
+    final sprovider = context.watch<SearchProvider>();
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
+            SearchField(),
             Expanded(
               child: ListView.builder(
                 controller: _scrollController,

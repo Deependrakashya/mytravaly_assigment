@@ -43,7 +43,7 @@ class HotelCard extends StatelessWidget {
                 width: double.infinity,
                 child: Image.network(
                   imageUrl,
-                  fit: BoxFit.fitWidth,
+                  fit: BoxFit.cover,
                   errorBuilder: (_, __, ___) => const Center(
                     child: Icon(Icons.broken_image, color: Colors.white),
                   ),

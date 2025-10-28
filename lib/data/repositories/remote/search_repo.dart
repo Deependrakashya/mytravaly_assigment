@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:mytravaly/core/services/api_service.dart';
 import 'package:mytravaly/data/models/search_auto_suggestion_model.dart';
 
@@ -9,6 +11,7 @@ class SearchRepo {
     required String query,
     required int pageNo,
   }) async {
+    log(query);
     final Map<String, dynamic> body = {
       "getSearchResultListOfHotels": {
         "searchCriteria": {
@@ -38,7 +41,7 @@ class SearchRepo {
     };
 
     final res = await _api.getSearchResult(data: body);
-
+    log("response ${res['data']}");
     return SearchResultModel.fromJson(res);
   }
 
@@ -59,8 +62,8 @@ class SearchRepo {
       },
     };
 
-    final res = await _api.getSearchResult(data: body);
-
+    final res = await _api.getSearchSuggestions(data: body);
+    // log(res.toString());
     return SearchAutoSuggestionModel.fromJson(res);
   }
 }

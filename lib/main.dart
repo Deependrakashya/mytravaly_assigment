@@ -6,6 +6,7 @@ import 'package:mytravaly/view/screens/auth_screen.dart';
 import 'package:mytravaly/view/screens/home_screen.dart';
 import 'package:mytravaly/view_model/provider/auth_screen_provider.dart';
 import 'package:mytravaly/view_model/provider/home_screen_provider.dart';
+import 'package:mytravaly/view_model/provider/search_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,6 +24,7 @@ void main() async {
         ChangeNotifierProvider<HomeScreenProvider>(
           create: (_) => HomeScreenProvider(),
         ),
+        ChangeNotifierProvider<SearchProvider>(create: (_) => SearchProvider()),
       ],
       child: MaterialApp(
         title: 'Mytravaly Demo',
