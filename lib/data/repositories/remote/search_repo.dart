@@ -41,7 +41,7 @@ class SearchRepo {
     };
 
     final res = await _api.getSearchResult(data: body);
-    log("response ${res['data']}");
+    // log("response ${res}");
     return SearchResultModel.fromJson(res);
   }
 

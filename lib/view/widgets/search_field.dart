@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:mytravaly/data/models/search_auto_suggestion_model.dart';
+import 'package:mytravaly/view/screens/search_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:mytravaly/view_model/provider/search_provider.dart';
 
@@ -58,15 +59,17 @@ class SearchField extends StatelessWidget {
               provider.updateSearchText(
                 suggestion.propertyName ?? '',
                 suggestion.searchArray!.query[0],
+                context,
+              );
+              provider.clearSuggestions();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SearchScreen()),
               );
             },
           );
         },
-        onSelected: (suggestion) {
-          // provider.updateSearchText(suggestion.propertyName ?? '',suggestion.searchArray!.query[0] );
-
-          provider.clearSuggestions();
-        },
+        onSelected: (suggestion) {},
         loadingBuilder: (context) => const Padding(
           padding: EdgeInsets.all(10.0),
           child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
