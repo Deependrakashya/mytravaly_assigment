@@ -25,7 +25,8 @@ A modern Flutter application designed to simplify travel management and hotel di
 ## 🛠️ Tech Stack
 
 - **Framework:** Flutter  
-- **Language:** Dart  
+- **Language:** Dart
+ - **Architecture:** MVVM (Model-View-ViewModel)
 - **State Management:** Provider  
 - **Backend:** Firebase (Google auth ) / REST APIs  
 - **IDE:**  VS Code  
